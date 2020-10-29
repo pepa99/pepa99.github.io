@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <title>Memory game</title>
+    <script src='jquery-1.11.3.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script>
+      var otvoreno=0; var upareno=0; var slika1; var slika2; var src1;
+      var time=0; var v=0; var krenulo=false;
+      function start(){
+        v=0;
+        localStorage.clear();
+        for(i=1;i<=8;i++){
+          var br=Math.floor(Math.random()*16)+1;
+          while(localStorage.getItem(br)!=null){br=Math.floor(Math.random()*16)+1;}
+          localStorage.setItem(br,i);
+          br=Math.floor(Math.random()*16)+1;
+          while(localStorage.getItem(br)!=null){br=Math.floor(Math.random()*16)+1;}
+          localStorage.setItem(br,i); 
+        }
+        time=setTimeout(updateTime,1000);
+        document.getElementById("dstart").disabled=true;
+        $('img').attr('src',"empty.png");
+        krenulo=true;
+      }
+      function updateTime(){
+          document.getElementById("vreme").innerHTML="Time: "+v;
+          v++;
+          time=setTimeout(updateTime,1000);
+      }
+      $(document).ready(function(){
+ 
+        $('img').click(function(){
+        if(!krenulo) return;
+        if($(this).attr('src')!="empty.png"){
+          alert("You already open this picture!"); return;
+        }
+        if(otvoreno==0){
+          otvoreno=1;
+          slika1=$(this);
+          src1="images/"+localStorage.getItem($(this).attr('id'))+".jpg";
+          slika1.attr('src',src1);
+        } else if(otvoreno==1){
+           var src2="images/"+localStorage.getItem($(this).attr('id'))+".jpg";
+           slika2=$(this);
+           slika2.attr('src',src2);
+           if(src1==src2){
+             upareno++;
+             if(upareno==8) {
+             clearTimeout(time); alert("You won!");
+             krenulo=false; 
+             document.getElementById("dstart").disabled=false;
+             upareno=0;
+             } 
+             otvoreno=0;       
+           } else{
+             krenulo=false;
+             setTimeout(function(){
+             slika1.attr('src',"empty.png");
+             slika2.attr('src',"empty.png");
+             otvoreno=0;
+             krenulo=true;
+             }, 1000);
+           }
+          }   
+        });
+      });
+    </script> 
+  </head>
+  <body>
+   <div class="container">
+   <div class="row">
+     <div class="col-sm-12 text-center" id="nas">
+       <h1>Memory game</h1>
+     </div>
+   </div>
+   <div class="row"> 
+   <div class="col-sm-12 "> 
+    </br>
+    <table style="margin: 0 auto">
+      <tr>
+        <td>
+          <img id="1" src='empty.png'>
+        </td>
+        <td>
+          <img id="2" src='empty.png'>
+        </td>
+        <td>
+           <img id="3" src='empty.png'> 
+        </td>
+        <td>
+           <img id="4" src='empty.png'> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <img id="5" src='empty.png'>
+        </td>
+        <td>
+           <img id="6" src='empty.png'>
+        </td>
+        <td>
+           <img id="7" src='empty.png'>
+        </td>
+        <td>
+           <img id="8" src='empty.png'>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <img id="9" src='empty.png'>
+        </td>
+        <td>
+          <img id="10" src='empty.png'>
+        </td>
+        <td>
+           <img id="11" src='empty.png'>
+        </td>
+        <td>
+           <img id="12" src='empty.png'>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <img id="13" src='empty.png'>
+        </td>
+        <td>
+           <img id="14" src='empty.png'>
+        </td>
+        <td>
+           <img id="15" src='empty.png'>
+        </td>
+        <td>
+            <img id="16" src='empty.png'>
+        </td>
+      </tr>
+    </table>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+      </br></br>
+      <input type='button' class="btn btn-danger" id="dstart" value="START" onclick="start();"></br>
+      <h2 id="vreme"></h2></br></br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-sm-8 col-sm-4">
+        <strong>Created by <a href="https://github.com/pepa99" target="_blank"> Predrag Cvetkovic </a></strong> 
+      </div>
+    </div> 
+  </body>
+</html>
