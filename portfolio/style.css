@@ -1,0 +1,31 @@
+body{
+    background-color: #F0FFFF;
+}
+
+#menu{
+    background-color:white;
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+hr{
+    border-color: green;
+    border-width: 2px;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+#nasl{
+       text-align: center;
+}
+a:hover{
+    color:black;
+    font-size: 21px;
+}
+
