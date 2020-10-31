@@ -1,0 +1,33 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+.header{
+	grid-column:span 12;
+	background-image: url("logo.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+	height:300px;
+    color: black;
+	font-family:'Raleway';
+}
+.about{
+	text-align:center;
+	grid-column:span 12;
+}
+.section1{
+	grid-column: span 3;
+}
+.section2{
+	grid-column: span 6;
+}	
+ul{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   text-align: right;
+   font-size:15px;
+}	
+li{
+	display:inline;
+}	
