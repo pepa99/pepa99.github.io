@@ -102,6 +102,9 @@ p {
 .active, .dot:hover {
   background-color: #717171;
 }
+img{
+	width:95%;
+}
 .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
