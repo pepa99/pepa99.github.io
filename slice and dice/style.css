@@ -61,6 +61,12 @@ ul{
 li{
 	display:inline;
 }	
+h1, h3{
+	font-family:'Raleway-Bold';
+}	
+p {
+	font-family:'ProximaNova-Regular';
+}
 .mySlides {
   display: none;
 }
@@ -71,7 +77,7 @@ li{
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 30px;
   transition: 0.6s ease;
