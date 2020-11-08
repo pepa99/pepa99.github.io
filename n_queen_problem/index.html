@@ -7,7 +7,7 @@
 	  var n=0;
 	  function solve(){
 	     n=parseInt(document.getElementById("broj").value);
-		 var tString=""; var i,j;
+		 /*var tString=""; var i,j;
 		 for (i=0;i<n;i++){
 		   tString +="<tr> ";
 		   for (j=0;j<n;j++){
@@ -20,8 +20,67 @@
 		   }
 		   tString +="</tr> ";
 		 }
+		 document.getElementById("tabela").innerHTML=tString;*/
+		 var board= [];
+		 for(var i=0;i<n;i++){
+		   board[i]=[];
+		   for(var j=0;j<n;j++){
+		     board[i][j]=0;
+		   }
+		 }
+		  if (solveNQUtil(board, 0) == false) return false; 
+		  ubacikraljice(board);
+	  }
+	  function ubacikraljice(board){
+	     var tString=""; var i,j;
+		 for (i=0;i<n;i++){
+		   tString +="<tr> ";
+		   for (j=0;j<n;j++){
+		    tString +="<td> ";
+			if(board[i][j]==0){
+			var br=i+j;
+			if(br%2==0){
+			 tString +="<img src='black.jpg' width='100%'>";
+			}
+			else{ tString +="<img src='white.jpg' width='100%'>";}
+			} else{
+			 tString +="<img src='queen.png' width='100%'>";
+			}
+			tString +="</td> ";
+		   }
+		   tString +="</tr> ";
+		 }
 		 document.getElementById("tabela").innerHTML=tString;
 	  }
+	 function solveNQUtil(board,col) 
+    { 
+        if (col >= n) return true; 
+        for (var i = 0; i < n; i++) { 
+            if (isSafe(board, i, col)) { 
+                board[i][col] = 1; 
+                if (solveNQUtil(board, col + 1) == true) 
+                    return true; 
+                board[i][col] = 0; 
+            } 
+        } 
+        return false; 
+    }
+    function isSafe(board, row, col) 
+    { 
+        var i, j; 
+        for (i = 0; i < col; i++) 
+            if (board[row][i] == 1) 
+                return false; 
+        for (i = row, j = col; i >= 0 && j >= 0; i--, j--) 
+            if (board[i][j] == 1) 
+                return false; 
+        for (i = row, j = col; j >= 0 && i < n; i++, j--) 
+            if (board[i][j] == 1) 
+                return false; 
+  
+        return true; 
+    } 
+  	
 	</script>
   </head>
   <body>
