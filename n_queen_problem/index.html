@@ -7,20 +7,7 @@
 	  var n=0;
 	  function solve(){
 	     n=parseInt(document.getElementById("broj").value);
-		 /*var tString=""; var i,j;
-		 for (i=0;i<n;i++){
-		   tString +="<tr> ";
-		   for (j=0;j<n;j++){
-		    tString +="<td> "; var br=i+j;
-			if(br%2==0){
-			 tString +="<img src='black.jpg' width='100%'>";
-			}
-			else{ tString +="<img src='white.jpg' width='100%'>";}
-			tString +="</td> ";
-		   }
-		   tString +="</tr> ";
-		 }
-		 document.getElementById("tabela").innerHTML=tString;*/
+		 if(n<4) {alert("There is no solution!"); return;}
 		 var board= [];
 		 for(var i=0;i<n;i++){
 		   board[i]=[];
